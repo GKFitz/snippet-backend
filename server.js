@@ -13,7 +13,7 @@ const morgan = require("morgan");
 
 //Models
 
-const directoryRoutes =require('./routes/directory.js')
+const directoryRoutes = require('./routes/directory.js')
 const Directory = require("./models/directory.js")
 
 
