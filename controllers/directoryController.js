@@ -1,4 +1,5 @@
 const Directory = require('../models/directory.js')
+const mongoose = require('mongoose')
 
 
 //GET all directories
@@ -12,6 +13,10 @@ const getDirectories = async (req, res) => {
 //GET a single Directory
 const getDirectory = async (req, res) => {
     const { id } = req.params
+
+    if (!mongoose.Types. ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such directory'})
+    }
 
     const directory = await Directory.findById(id)
 
@@ -37,14 +42,48 @@ const createDirectory = async (req, res) => {
 }
 
 //DELETE a Directory
+const deleteDirectory = async (req, res) => {
+    const { id } = req.params
 
+    if (!mongoose.Types. ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such directory'})
+    }
+
+    const directory = await Directory.findOneAndDelete({_id: id})
+
+    if (!directory) {
+        return res.status(404).json({error: 'No such directory'})
+    }
+    res.status(200).json(directory)
+
+}
 
 //UPDATE a Directory
+const updateDirectory = async (req, res) => {
+    const {id} = req.params
+
+    if (!mongoose.Types. ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such directory'})
+    }
+
+    const directory = await Directory.findOneAndUpdate({_id: id}, { 
+        ...req.body
+    })
+
+    if (!directory) {
+        return res.status(404).json({error: 'No such directory'})
+    }
+    res.status(200).json(directory)
+    
+
+}
 
 
 module.exports = {
     getDirectories,
     getDirectory,
     createDirectory,
+    deleteDirectory,
+    updateDirectory
 
 }

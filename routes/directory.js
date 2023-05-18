@@ -5,6 +5,8 @@ const {
     getDirectories,
     getDirectory,
     createDirectory,
+    deleteDirectory,
+    updateDirectory
 
 } = require('../controllers/directoryController.js')
 
@@ -28,14 +30,14 @@ router.post('/', createDirectory)
 
 
 //Delete a Directory
-router.delete('/:id', (req, res) => {
-    res.json({message: 'GET ALL DIRECTORIES'})
-})
+router.delete('/:id', deleteDirectory)
+    // res.json({message: 'GET ALL DIRECTORIES'})
+
 
 //UPDATE a Directory
-router.put('/:id', (req, res) => {
-    res.json({ message: 'UPDATE a DIRECTORY'})
-})
+router.put('/:id', updateDirectory)
+    // res.json({ message: 'UPDATE a DIRECTORY'})
+
 
 
 
