@@ -41,6 +41,11 @@ app.use(morgan("dev")); // logging
 app.use(express.json()); // parse json bodies
 app.use(express.urlencoded({extended: true}))
 
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
+
 ///////////////////////////////
 // ROUTES
 ////////////////////////////////
@@ -50,6 +55,8 @@ app.use(express.urlencoded({extended: true}))
 // });
 
 app.use('/api/directory', directoryRoutes)
+
+//COnnect to
 
 
 

@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 
 const directorySchema = new Schema({
-  name: { type: String, required: true},
-  description: { type: String, required: true }, 
+  title: { type: String},
+  description: { type: String}, 
   
   
 }, {timestamps: true})
