@@ -11,6 +11,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const morgan = require("morgan");
 
+//Models
+const Directory = require("./models/directory.js")
+
+
 ///////////////////////////////
 // DATABASE CONNECTION
 ////////////////////////////////
