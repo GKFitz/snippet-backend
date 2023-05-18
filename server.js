@@ -12,6 +12,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 //Models
+
+const directoryRoutes =require('./routes/directory.js')
 const Directory = require("./models/directory.js")
 
 
@@ -43,9 +45,13 @@ app.use(express.urlencoded({extended: true}))
 // ROUTES
 ////////////////////////////////
 // create a test route
-app.get("/", (req, res) => {
-    res.send("hello world");
-});
+// app.get("/", (req, res) => {
+//     res.send("hello world");
+// });
+
+app.use('/api/directory', directoryRoutes)
+
+
 
 ///////////////////////////////
 // LISTENER
