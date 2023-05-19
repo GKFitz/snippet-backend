@@ -1,5 +1,7 @@
 const express = require('express')
 const Directory = require('../models/directory.js')
+const snippetRouter = require('./snippet')
+
 
 const {
     getDirectories,
@@ -11,6 +13,8 @@ const {
 } = require('../controllers/directoryController.js')
 
 const router = express.Router()
+
+router.use(snippetRouter)
 
 
 
