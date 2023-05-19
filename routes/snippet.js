@@ -6,8 +6,8 @@ const {
     getSnippets,
     updateSnippetDir,
     //updateSnippet
-    // getDirectory,
-    // createSnippet,
+    getOneSnippet,
+    createSnippet,
     deleteSnippet,
     // updateDirectory
 
@@ -18,11 +18,12 @@ const {
 
 router.route('/:dirId/snippet')
     .get(getSnippets)
-    // .post(createSnippet)
+    .post(createSnippet)
 
 
 // update and add a snip to the directory
 router.route('/:dirId/snippet/:id')
+    .get(getOneSnippet)
     .delete(deleteSnippet)
     .put(updateSnippetDir)
 
