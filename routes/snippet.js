@@ -4,17 +4,35 @@ const router = express.Router()
 
 const {
     getSnippets,
+    updateSnippetDir,
+    //updateSnippet
     // getDirectory,
-    // createDirectory,
-    // deleteDirectory,
+    // createSnippet,
+    deleteSnippet,
     // updateDirectory
 
 } = require('../controllers/snippetControllers.js')
 
 
+
+
 router.route('/:dirId/snippet')
     .get(getSnippets)
     // .post(createSnippet)
+
+
+// update and add a snip to the directory
+router.route('/:dirId/snippet/:id')
+    .delete(deleteSnippet)
+    .put(updateSnippetDir)
+
+// router.route('/:dirId/snippet/:id')
+//     .get(getSnippet)
+//     .delete(deleteSnippet)
+//    .put(updateSnippet)
+           
+    
+
 
 //GET all Directories
 // router.get('/:dirId/snippet', getSnippets)
@@ -39,11 +57,6 @@ router.route('/:dirId/snippet')
 //UPDATE a Directory
 // router.put('/:id', updateDirectory)
 //     // res.json({ message: 'UPDATE a DIRECTORY'})
-
-// router.route('/:dirId/snippet/:id')
-//     .get(getSnippet)
-//     .delete(deleteSnippet)
-//     .put(updateSnippet)
 
 
 

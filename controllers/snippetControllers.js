@@ -1,4 +1,5 @@
 const Directory = require('../models/directory.js')
+// const Snippet = require('../models/snippet.js')
 const mongoose = require('mongoose')
 
 
@@ -7,99 +8,85 @@ const mongoose = require('mongoose')
 const getSnippets = async (req, res) => {
     // const directories = await Directory.find({}).sort({createdAt: -1})
     const dirId = req.params.dirId
-    const {snippets } = await Directory.findById(dirId)
+    const {snippets} = await Directory.findById(dirId)
     res.status(200).json(snippets)
 }
 
 
-//GET a single Directory
-// const getDirectory = async (req, res) => {
-//     const { id } = req.params
+// GET a single Directory
+const getSnippet = async (req, res) => {
+    const { id } = req.params
 
-//     if (!mongoose.Types. ObjectId.isValid(id)) {
-//         return res.status(404).json({error: 'No such directory'})
-//     }
+    if (!mongoose.Types. ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such directory'})
+    }
 
-//     const directory = await Directory.findById(id)
+    const directory = await Directory.findById(id)
 
-//     if (!directory) {
-//         return res.status(404).json({error: 'No such directory'})
-//     }
-//     res.status(200).json(directory)
+    if (!directory) {
+        return res.status(404).json({error: 'No such directory'})
+    }
+    res.status(200).json(directory)
+}
+
+
+
+
+// //DELETE a Directory
+const deleteSnippet = async (req, res) => {
+    const { id } = req.params
+    const snippet = await Directory.findOneAndDelete({_id: id})
+    res.status(200).json(snippet)
+
+}
+
+// //UPDATE a Directory WITH a snippet
+const updateSnippetDir = async (req, res) => {
+    try{
+       const {id} = req.params
+       const snippetObject = req.body
+       await Directory.findOneAndUpdate(
+            { _id: id }, 
+            { $push: { snippets: snippetObject } }, 
+            { new: true },
+        )
+    }catch (error){
+        res.status(400).json({error: error.message})
+    }
+}
+
+//  Update a snippet
+// const updateSnippet = async (req, res) => {
+//     const snippet = await Directory.findByIdAndUpdate(
+//         req.params.id,
+//         req.body,
+//     )
+//     res.status(200).json(snippet)
 // }
 
-
-// //CREATE a Directory
-// const createDirectory = async (req, res) => {
-//     const { title, description } = req.body
+// //CREATE a Snippet on Directory
+// const createSnippet = (req, res) => {
+//     const { title, timestamp } = req.body
 
 //     //Adding doc to DB
 //     try {
-//         const directory = await Directory.create({ title, description })
-//         res.status(200).json(directory)
+//         const snippet = new Directory.create({ title, timestamp })
+//         res.status(200).json(snippet)
 //     } catch (error) {
 //     res. status(400).json({error: error.message})
 //     }
 
 // }
 
-// //DELETE a Directory
-// const deleteDirectory = async (req, res) => {
-//     const { id } = req.params
-
-//     if (!mongoose.Types. ObjectId.isValid(id)) {
-//         return res.status(404).json({error: 'No such directory'})
-//     }
-
-//     const directory = await Directory.findOneAndDelete({_id: id})
-
-//     if (!directory) {
-//         return res.status(404).json({error: 'No such directory'})
-//     }
-//     res.status(200).json(directory)
-
-// }
-
-
-
-
-// //UPDATE a Directory WITH a snippet
-const updateSnippetDir = async (req, res) => {
-        let snippetObject = req.body
-        const {id} = req.params
-
-    if (!mongoose.Types. ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'No such directory'})
-    }
-
-    const directory = await Directory.findOneAndUpdate({_id: id}, { 
-        ...req.body
-    })
-
-    if (!directory) {
-        return res.status(404).json({error: 'No such directory'})
-    }
-    res.status(200).json(directory)
-    
-
-}
-router.put('/:id/reviews', async(req, res) => {
-    let reviewObject = req.body
-    const {id} = req.params
-    await Water.findOneAndUpdate(
-        { _id: id }, 
-        { $push: { reviews: reviewObject } }, 
-        { new: true },
-    ) 
-    res.redirect('/water')
-})
-
 
 module.exports = {
     getSnippets,
+    updateSnippetDir,
+    deleteSnippet,
+    // updateSnippet,
     // getDirectory,
-    // createDirectory,
-    // deleteDirectory,
+    // createSnippet,
+    
     // updateDirectory
 
 }
