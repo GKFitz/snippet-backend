@@ -6,10 +6,13 @@ const snippetSchema = new Schema({
   title: { type: String},
   description: { type: String},
   codeSnip: { type: String},
-  arcticles: { type: String},
+  articles: { type: String},
   
   
 }, {timestamps: true})
+
+
+const Snippets = mongoose.model("Snippets", snippetsSchema);
 
 
 

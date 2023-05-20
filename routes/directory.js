@@ -1,6 +1,6 @@
 const express = require('express')
 const Directory = require('../models/directory.js')
-const snippetRouter = require('./snippet')
+// const snippetRouter = require('./snippet')
 
 
 const {
@@ -8,13 +8,16 @@ const {
     getDirectory,
     createDirectory,
     deleteDirectory,
-    updateDirectory
+    updateDirectory,
+    addSnipToDirectory
+    // updateSnippetDir
+
 
 } = require('../controllers/directoryController.js')
 
 const router = express.Router()
 
-router.use(snippetRouter)
+// router.use(snippetRouter)
 
 
 
@@ -43,7 +46,12 @@ router.put('/:id', updateDirectory)
     // res.json({ message: 'UPDATE a DIRECTORY'})
 
 
+// router.route('/:id/snippet')
+//     // .post(createSnippet)
+//     .put(updateSnippetDir)
 
+router.put('/:id/snippet/:snippets_index/title', addSnipToDirectory)
+    // res.json({ message: 'UPDATE a DIRECTORY'})
 
 
 
