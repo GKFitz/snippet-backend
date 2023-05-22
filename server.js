@@ -15,7 +15,7 @@ const morgan = require("morgan");
 
 const directoryRoutes = require('./routes/directory.js')
 const Directory = require("./models/directory.js")
-// const snippetRoutes = require('./routes/snippet.js')
+const snippetRoutes = require('./routes/snippet.js')
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 // });
 
 app.use('/api/directory', directoryRoutes)
-// app.use('/api/directory')
+app.use('/api/snippets', snippetRoutes)
 
 
 //COnnect to

@@ -8,71 +8,49 @@ const {
     getDirectory,
     createDirectory,
     deleteDirectory,
-    deleteSnippet,
     updateDirectory,
-    addSnipToDirectory,
-
-    
-
-
+    getSnippets,
+    addSnippets,
+    getOneAndSnip,
+   
+    // deleteSnippet,
 } = require('../controllers/directoryController.js')
 
 const router = express.Router()
 
-// router.use(snippetRouter)
-
-
 
 //GET ALL Directories
 router.get('/', getDirectories)
-//     // res.json({message: 'GET ALL DIRECTORIES'})
-
-//GET ALL Snippets on a particular directory
-router.get('/:id/snippets', getSnippets)
     // res.json({message: 'GET ALL DIRECTORIES'})
 
-
-// //GET ONE Directory
+//GET ONE Directory
 router.get('/:id', getDirectory)
-//     // res.json({message: 'GET one DIRECTORY'})
-
-//GET ONE Snippet on a Directory
-router.get('/:id/snippet/:snippets_index', getOneSnippet)
-//     // res.json({message: 'GET one DIRECTORY'})
-
-
+    // res.json({message: 'GET one DIRECTORY'})
 
 //POST a new Directory
 router.post('/', createDirectory)
     // res.json({message: 'POST A New DIRECTORY'})
 
-
-//DDELETE a Directory
+//DELETE a Directory
 router.delete('/:id', deleteDirectory)
     // res.json({message: 'GET ALL DIRECTORIES'})
 
-
-//DELETE a Snippet from Snippet Array on a Directory
-// router.delete("/id/snippets/:snippets_index", deleteSnippet)
-
-//UPDATE a Directory
+//UPDATE a Directory(remember PUT is to replace something)
 router.put('/:id', updateDirectory)
     // res.json({ message: 'UPDATE a DIRECTORY'})
 
+//UPDATE/ADD (remember Patch it a partial, concentrated update)
+router.patch('/:directoryId', addSnippets)
 
-//UPDATE/ADD a Snippet to Directory
-// router.put('/:id/snippets/:snipId', addSnipToDirectory)
-
-
-
-
-// router.route('/:id/snippet')
-//     // .post(createSnippet)
-//     .put(updateSnippetDir)
+//
+router.get('/get/:id', getOneAndSnip)
 
 
 
-// router.put('/:id/snippet/:snippets_index')
+
+//GET ALL Snippets on a particular directory
+router.get('/:id/snippets', getSnippets)
+
 
 
 module.exports = router;

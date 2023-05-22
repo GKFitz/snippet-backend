@@ -1,16 +1,20 @@
 // const Directory = require('../models/directory.js')
-// // const Snippet = require('../models/snippet.js')
+const Snippet = require('../models/snippets.js')
 // const mongoose = require('mongoose')
 
+const getASnippet = (req,res)=>{
+    // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+    Snippet.findOne({ _id: req.params.id })
+      // ..and populate all of the notes associated with it
+      .then(function(dbProduct) {
+        // If we were able to successfully find an Product with the given id, send it back to the client
+        res.json(dbProduct);
+      }).catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+    });
+}
 
-
-// //GET all directories
-// const getSnippets = async (req, res) => {
-//     // const directories = await Directory.find({}).sort({createdAt: -1})
-//     const dirId = req.params.dirId
-//     const {snippets} = await Directory.findById(dirId)
-//     res.status(200).json(snippets)
-// }
 
 
 // // GET a single Directory
@@ -128,12 +132,13 @@
 
 
 // // //DELETE a Snip
-// // const deleteSnippet = async (req, res) => {
-// //     const { id } = req.params
-// //     const snippet = await Directory.findOneAndDelete({_id: id})
-// //     res.status(200).json(snippet)
+// const deleteSnippet = async (req, res) => {
+//    const { id } = req.params
+//     const snippet = await Snippet.findOneAndDelete({_id: id})
+//     res.status(200).json(snippet)
 
-// // }
+
+
 
 // // const deleteSnippet = async (req, res) => {
 // //     const dirId = req.params.dirId;
@@ -199,14 +204,14 @@
 // // }
 
 
-// module.exports = {
-//     // getSnippets,
-//     // updateSnippetDir,
-//     // deleteSnippet,
-//     // updateSnippet,
-//     // getOneSnippet,
-//     // createSnippet
+module.exports = {
     
-//     // updateDirectory
+    // updateSnippetDir,
+    // deleteSnippet,
+    // updateSnippet
+    // getOneSnippet,
+    // createSnippet
+    
+    // updateDirectory
 
-// }
+}

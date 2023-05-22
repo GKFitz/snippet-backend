@@ -12,9 +12,9 @@ const snippetSchema = new Schema({
 }, {timestamps: true})
 
 
-const Snippets = mongoose.model("Snippets", snippetsSchema);
 
 
 
 
-module.exports = snippetSchema;
+
+module.exports = mongoose.model("Snippets", snippetSchema);
