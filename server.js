@@ -50,9 +50,9 @@ app.use((req, res, next) => {
 // ROUTES
 ////////////////////////////////
 // create a test route
-// app.get("/", (req, res) => {
-//     res.send("hello world");
-// });
+app.get("/", (req, res) => {
+    res.send("hello world");
+});
 
 app.use('/api/directory', directoryRoutes)
 app.use('/api/snippets', snippetRoutes)
