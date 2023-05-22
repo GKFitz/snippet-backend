@@ -5,7 +5,7 @@ const router = express.Router()
 const {
     getASnippet,
     deleteSnippet,
-    // updateSnippet
+    updateSnippet
 
 } = require('../controllers/snippetControllers.js')
 
@@ -17,6 +17,6 @@ router.get('/:id', getASnippet)
 router.delete('/delete/:id', deleteSnippet)
 
 //UPDATE a Snippet
-// router.put('/update/:id', updateSnippet)
+router.put('/update/:id', updateSnippet)
  
 module.exports = router
