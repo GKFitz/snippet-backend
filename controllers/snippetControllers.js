@@ -28,19 +28,19 @@ const deleteSnippet = async (req, res) => {
 
 // UPDATE Snippet
 //NOTE: unlike the PAtch for the Directories Snippet(snip)
-const updateSnippet = (req, res) => {
-    Snippet.findByIdAndUpdate(
-        { _id: req.params.id }, 
-        req.body, {
+const updateSnippet = async(req, res) => {
+    await Snippet.findByIdAndUpdate({ _id: req.params.id }, req.body, {
         new: true,
-        runValidators: true
-    }).then((updateSnippet) => res.json(updateSnippet))
-        .catch((err) => console.log(err));
+        runValidators: true,
+    })
+    .then((updateSnippet) => res.json(updateSnippet))
+    .catch((err) => console.log(err));
 }
 
 module.exports = {
     getASnippet,
-    deleteSnippet,
-    updateSnippet
+    updateSnippet,
+    deleteSnippet
+    
    
 }
