@@ -91,7 +91,9 @@ const addSnippets = (req,res)=>{
 //This route and function gets a directory by the Id, then populates it with the Snips in its array 
 const getOneAndSnip = (req,res)=> {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-    Directory.findOne({ _id: req.params.id })
+    Directory.findOne(
+            { _id: req.params.id }
+        )
       // this will populate all of the snips associated with that directory
       .populate("snippets")
       .then(function(dbSnippet) {

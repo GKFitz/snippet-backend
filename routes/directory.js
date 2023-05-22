@@ -18,7 +18,6 @@ const {
 
 const router = express.Router()
 
-
 //GET ALL Directories
 router.get('/', getDirectories)
     // res.json({message: 'GET ALL DIRECTORIES'})
@@ -44,9 +43,6 @@ router.patch('/:directoryId', addSnippets)
 
 //
 router.get('/get/:id', getOneAndSnip)
-
-
-
 
 //GET ALL Snippets on a particular directory
 router.get('/:id/snippets', getSnippets)

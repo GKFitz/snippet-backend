@@ -18,17 +18,18 @@ const getASnippet = (req,res)=>{
 
 
 // //DELETE a Snippet
-// const deleteSnippet = async (req, res) => {
-//    const { id } = req.params
-//     const snippet = await Snippet.findOneAndDelete({_id: id})
-//     res.status(200).json(snippet)
+const deleteSnippet = async (req, res) => {
+   const { id } = req.params
+    const snippet = await Snippet.findOneAndDelete(
+        {_id: id}
+    )
 
+    res.status(200).json(snippet)
+}
 
 
 module.exports = {
     getASnippet,
-    // updateSnippetDir,
-    // deleteSnippet,
-    // updateSnippet
-
+    deleteSnippet,
+   
 }
