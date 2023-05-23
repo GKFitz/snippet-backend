@@ -73,14 +73,12 @@ const addSnippets = (req,res)=>{
     Snippets.create(req.body)
       .then(function(dbSnip) {
           //
-           return Directory.findOneAndUpdate(
+            Directory.findOneAndUpdate(
                { _id: req.params.directoryId}, 
                {$push: {snippets: dbSnip._id}}, 
                { new: true }
-            );
-        })
-      .then(function(dbSnip) {
-        res.json(dbSnip);
+            ).then(()=> {res.json(dbSnip)})
+            
         })
       .catch(function(err) {
         res.json(err);
